@@ -1,0 +1,5 @@
+// This file is intentionally left blank.
+// Add any client-side JS here, e.g., form validation
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('App loaded');
+});

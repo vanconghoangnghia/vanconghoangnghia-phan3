@@ -1,0 +1,48 @@
+<%- include('../partials/header') %>
+<h1>Products</h1>
+<% if (messages && messages.length > 0) { %>
+  <% messages.forEach(msg => { %>
+    <div class="flash <%= msg.type %>"><%= msg.message %></div>
+  <% }) %>
+<% } %>
+<form method="GET" action="/products" style="margin-bottom: 20px;">
+  <input type="text" name="search" value="<%= search %>" placeholder="Search by name">
+  <select name="supplier">
+    <option value="">All Suppliers</option>
+    <% suppliers.forEach(supplier => { %>
+      <option value="<%= supplier._id %>" <%= (search.supplier === supplier._id) ? 'selected' : '' %>>
+        <%= supplier.name %>
+      </option>
+    <% }) %>
+  </select>
+  <button type="submit">Filter</button>
+</form>
+<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Supplier</th>
+    <th>Actions</th>
+  </tr>
+  <% if (products.length === 0) { %>
+    <tr><td colspan="5">No products found</td></tr>
+  <% } else { %>
+    <% products.forEach(product => { %>
+      <tr>
+        <td><%= product.name %></td>
+        <td>$<%= product.price %></td>
+        <td><%= product.quantity %></td>
+        <td><%= product.supplierId ? product.supplierId.name : 'No Supplier' %></td>
+        <td>
+          <a href="/products/<%= product._id %>/edit">Edit</a>
+          <form action="/products/<%= product._id %>?_method=DELETE" method="POST" style="display:inline;">
+            <button type="submit" onclick="return confirm('Are you sure?');">Delete</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  <% } %>
+</table>
+<a href="/products/new">Add Product</a>
+<%- include('../partials/footer') %>

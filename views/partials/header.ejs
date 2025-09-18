@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplier Product App</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <% if (typeof user !== 'undefined') { %>
+            <a href="/suppliers">Suppliers</a>
+            <a href="/products">Products</a>
+            <a href="/auth/logout">Logout</a>
+        <% } else { %>
+            <a href="/auth/login">Login</a>
+        <% } %>
+    </nav>
+    <% if (messages && Array.isArray(messages)) { %>
+        <% messages.forEach(msg => { %>
+            <div class="flash"><%= msg %></div>
+        <% }) %>
+    <% } %>

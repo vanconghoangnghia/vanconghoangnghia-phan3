@@ -1,0 +1,11 @@
+<%- include('../partials/header') %>
+<h1><%= title %></h1>
+<form action="<%= action === 'create' ? '/suppliers' : `/suppliers/${supplier._id}` %>?_method=<%= action === 'update' ? 'PUT' : 'POST' %>" method="POST">
+    <input type="hidden" name="_method" value="<%= action === 'update' ? 'PUT' : 'POST' %>">
+    <input type="text" name="name" value="<%= supplier.name || '' %>" placeholder="Name" required>
+    <input type="text" name="address" value="<%= supplier.address || '' %>" placeholder="Address" required>
+    <input type="tel" name="phone" value="<%= supplier.phone || '' %>" placeholder="Phone" required>
+    <button type="submit">Save</button>
+</form>
+<a href="/suppliers">Back</a>
+<%- include('../partials/footer') %>

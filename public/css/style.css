@@ -1,0 +1,13 @@
+body { font-family: Arial, sans-serif; margin: 20px; }
+nav { background: #333; padding: 10px; }
+nav a { color: white; margin-right: 10px; text-decoration: none; }
+.flash { padding: 10px; margin: 10px 0; border-radius: 5px; }
+.flash.success { background: green; color: white; }
+.flash.error { background: red; color: white; }
+form { max-width: 400px; }
+input, select, button { display: block; width: 100%; margin: 10px 0; padding: 8px; }
+table { width: 100%; border-collapse: collapse; }
+th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+.search-filter { margin: 20px 0; }
+.search-filter form { display: flex; gap: 10px; }
+.search-filter input, .search-filter select { flex: 1; }

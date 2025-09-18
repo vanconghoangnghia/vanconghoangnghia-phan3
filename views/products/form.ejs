@@ -1,0 +1,19 @@
+<%- include('../partials/header') %>
+<h1><%= title %></h1>
+<form action="<%= action === 'create' ? '/products' : `/products/${product._id}` %>?_method=<%= action === 'update' ? 'PUT' : 'POST' %>" method="POST">
+    <input type="hidden" name="_method" value="<%= action === 'update' ? 'PUT' : 'POST' %>">
+    <input type="text" name="name" value="<%= product.name || '' %>" placeholder="Name" required>
+    <input type="number" name="price" value="<%= product.price || '' %>" placeholder="Price" step="0.01" required>
+    <input type="number" name="quantity" value="<%= product.quantity || '' %>" placeholder="Quantity" required>
+    <select name="supplierId" required>
+        <option value="">Select Supplier</option>
+        <% suppliers.forEach(supplier => { %>
+            <option value="<%= supplier._id %>" <%= product.supplierId && product.supplierId._id.toString() === supplier._id.toString() ? 'selected' : '' %>>
+                <%= supplier.name %>
+            </option>
+        <% }) %>
+    </select>
+    <button type="submit">Save</button>
+</form>
+<a href="/products">Back</a>
+<%- include('../partials/footer') %>

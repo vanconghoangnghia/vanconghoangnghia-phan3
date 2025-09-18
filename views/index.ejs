@@ -1,0 +1,15 @@
+<%- include('partials/header') %>
+<h1>Welcome, <%= user.username %>!</h1>
+<div class="search-filter">
+    <form action="/products" method="GET">
+        <select name="supplier">
+            <option value="">All Suppliers</option>
+            <% suppliers.forEach(supplier => { %>
+                <option value="<%= supplier._id %>"><%= supplier.name %></option>
+            <% }) %>
+        </select>
+        <input type="text" name="search" placeholder="Search products by name" value="<%= search || '' %>">
+        <button type="submit">Filter/Search</button>
+    </form>
+</div>
+<%- include('partials/footer') %>
